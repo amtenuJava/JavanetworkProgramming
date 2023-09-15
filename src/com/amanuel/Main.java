@@ -13,15 +13,12 @@ public class Main {
 
 
             while (true) {
-                Socket socket = serverSocket.accept();
-                System.out.println("Client is connected");
-                BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
-                String echoString = input.readLine();
-                if (echoString.equals("exit")) {
-                    break;
-                }
-                output.println("Echo from Server Amanuel " + echoString);
+                new Echoer(serverSocket.accept()).start();
+//                 Socket socket= serverSocket.accept();
+//                 Echoer echoer=new Echoer(socket);
+//                 echoer.start();
+                //equivalent to the above code
+
             }
 
         } catch (IOException e) {
